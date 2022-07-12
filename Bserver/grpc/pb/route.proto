@@ -1,0 +1,25 @@
+// route.proto
+/* 指定使用的是 proto3 的語法 */
+syntax = 'proto3';
+
+option go_package = "./;route";
+
+/* option 不會改變聲明的整體含義，但可能會影響它在特定上下文中的處理方式 */
+
+package route;
+
+service ServiceServer{
+    rpc RedisUserBuyCount (BuyRequest) returns (StatusReply) {}
+    rpc RedisProductionBuyCount (BuyRequest) returns (StatusReply) {}
+
+}
+
+message StatusReply {
+    int32 code= 1;
+    string status = 2;
+}
+
+message BuyRequest{
+    string customer = 1;
+    string production =2;
+}
